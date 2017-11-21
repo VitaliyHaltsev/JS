@@ -90,70 +90,124 @@ var y = 20;  // local, но также записывается в global
 
 // ------------------------------------------------
 
-p = 20; // global scope
+// p = 20; // global scope
 
-function F1(a) {
-     // lexicalEnvironment = { a: 5 }
-     // F2.scope = Global Scope = window
-    console.log(a);
-    F2(29);
-    console.log(a);
+// function F1(a) {
+//      // lexicalEnvironment = { a: 5 }
+//      // F2.scope = Global Scope = window
+//     console.log(a);
+//     F2(29);
+//     console.log(a);
 
 
 
-    function F2(b) {
-        // lexicalEnvironment = { b: 29 }
-        // F2.scope = F1.lexicalEnvironment = { a: 5 }
+//     function F2(b) {
+//         // lexicalEnvironment = { b: 29 }
+//         // F2.scope = F1.lexicalEnvironment = { a: 5 }
 
-        console.log(a + b + p);
+//         console.log(a + b + p);
 
-        a += 10;
-        p = p + 50;
-    }
-}
+//         a += 10;
+//         p = p + 50;
+//     }
+// }
 
-F1(5);
+// F1(5);
 
 // 1. lexicalEnvironment определяется во время вызова функции (с передачей аргументов)
 // 2. ссылка scope определяется во время описание функции (т.е. её создании)
 
+// function doIt(x, y) { 
+//     // lexicalEnvironment = { x: 6, y: undefined, g: undefined }
+//     // doIt.scope => Global Scope
+//     var g = 10;
+//     // lexicalEnvironment = { x: 6, y: undefined, g: 10 }
+// }
 
+// var x = 20;
 
+// function F1() {
+//     var x = 50;
+    
+//     F2(x, 10);
+// }
 
+// function F2(x, y) { // F2.scope = Global Scope = window
+//     console.log(x + y);
+// }
 
-
-
-
-
-
+// F1();
+// F2(10);
 
 // ------------------------------------------------
 
 // 3) Замыкание
 // https://myrusakov.ru/javascript-closures.html
 // http://es6-features.org
+// http://getinstance.info/articles/javascript/closures-in-javascript/
 // http://learn.javascript.ru/function-declaration-expression
 // Замыкание - функция вместе со всеми переменными, которые ей доступны.
 
 
 // разбор
 
-y = 500;
+// y = 500;
 
-function F11() {
-    var p = 5,
-        d = 50;
+// function F11() {
+//     var p = 5,
+//         d = 50;
 
-    function F22(a) {
-        var x = 10;
-        debugger;
-        return p + a;
-    }
+//     console.log(y);
+
+//     function F22(a) {
+//         var x = 10;
+
+//         function Sum(a, b) {
+//             // debugger;
+
+//             return a + b + d + x;
+//         }
+        
+//         return p + a + y + Sum(2, 8);
+//     }
 
     
-    return F22(10);
-}
+
+    
+//     return F22(10);
+// }
 
 
 // var result = F11();
 // console.log(result);
+
+
+function F1(a) {
+    var x = a + 5;
+
+    return function (b) {
+        var f1_x = x;
+        // console.log('in Sum:', a, b, x);
+        if (x == 10) {
+            x = 0;
+        } else {
+            x++;
+        }
+        // x = x == 10 ? 0 : x+1;
+
+        return a + b + f1_x;
+    };
+}
+
+var res = F1(1);
+
+console.log(res(20));
+console.log(res(20));
+console.log(res(23));
+console.log(res(24));
+console.log(res(2));
+
+// console.log(result);
+
+
+// sychov.saveliy@gmail.com
