@@ -1,16 +1,57 @@
 // 1) функции, параметры, return
+function Sum(a, b, c) {
+    // var res = a + b; // локальная переменная
+    if(!c){
+        c = 0;
+    }
 
-function Sum() {
-    console.log(a + b);
+    return a + b + c;
 }
 
-a = 10;
-b = 20;
+var Div2 = function() {
+    console.log(2);
+}
 
-// Sum();
+// Sum(10, 5); // a = 10;
+
+var result = Sum(2, 3) - Sum(3, 4, 8);
+// console.log(result);
+
+
+function sumAll() { // arguments = [7,9,4,3,5,3,523]
+    // call() bind() apply()
+    // console.log(arguments);
+
+    var sum = 0;
+
+    for(var i = 0; i < arguments.length; i++){
+        sum += arguments[i];
+    }
+    console.log(sum);
+
+    return sum;
+}
+
+
+sumAll(2,3,42,1);
+sumAll(7,9,4,3,5,3,523); 
+sumAll();
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ------------------------------------------------
 
-// 2) области видимости, lexicalEnvironment, global
+// 2) области видимости, lexicalEnvironment, global scope
 
 var x = 10; // global
 y = 20;  // local, но также записывается в global
@@ -29,6 +70,10 @@ function F(a, b, c) {
 }
 
 // F(2, 3);
+
+
+
+
 // ------------------------------------------------
 
 
@@ -55,6 +100,15 @@ function F1(a) {
 
 // 1. lexicalEnvironment определяется во время вызова функции (с передачей аргументов)
 // 2. ссылка scope определяется во время описание функции (т.е. её создании)
+
+
+
+
+
+
+
+
+
 
 
 // ------------------------------------------------
